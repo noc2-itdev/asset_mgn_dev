@@ -20,7 +20,7 @@ This project sets up a full-stack Django Rest Framework application, powered by:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/noc2-itdev/asset_mgn.git
+git clone https://github.com/noc2-itdev/asset_mgn_dev.git
 ```
 
 ### 2. Create and install packages in venv
