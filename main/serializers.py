@@ -21,9 +21,28 @@ class PersonSerializer(serializers.ModelSerializer):
     Serializer cho model Person
     Chuyển đổi dữ liệu giữa model và JSON format
     """
+    department_name = serializers.CharField(source='department.name', read_only=True)
+
     class Meta:
         model = Person
         fields = '__all__'
+        read_only_fields = ('id',)
+
+    def validate_name(self, value):
+        """
+        Xác thực tên người
+        """
+        if len(value.strip()) < 2:
+            raise serializers.ValidationError("Tên người phải có ít nhất 2 ký tự.")
+        return value
+
+    def validate_email(self, value):
+        """
+        Xác thực địa chỉ email
+        """
+        if value and '@' not in value:
+            raise serializers.ValidationError("Địa chỉ email không hợp lệ.")
+        return value
 
 
 class LocationSerializer(serializers.ModelSerializer):

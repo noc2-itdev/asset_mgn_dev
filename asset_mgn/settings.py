@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# SECURITY WARNING: keep the secret key used in production!
 SECRET_KEY = 'django-insecure-v3!6hsv=6gen!5no5r*xi%iftjoll5-e%hv28q0*adp(0_p4w5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'main',
     'person',
+    'department',
 ]
 
 MIDDLEWARE = [
