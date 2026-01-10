@@ -37,3 +37,5 @@ def location_detail_by_name(request, name):
     GET: /location/name/{name}/
     """
     pass
+
+###test
