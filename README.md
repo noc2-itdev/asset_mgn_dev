@@ -55,82 +55,62 @@ DATABASE_HOST=X.X.X.X
 DATABASE_PORT=5432
 ```
 
----
+## Feature Development: Department App
 
-## Git Workflow for Feature Development
-
-### 1. Checkout the feature branch for location CRUD
+### Creating Department App Feature Branch
 
 ```bash
-# Fetch the latest branches from remote
-git fetch origin
+# Switch to the department feature branch
+git checkout feature/department-crud
 
-# Checkout the location CRUD feature branch
-git checkout feature/location-crud
+# If the branch doesn't exist, create it
+git checkout -b feature/department-crud origin/feature/department-crud
 
-# If the branch doesn't exist locally, create it from the remote branch
-git checkout -b feature/location-crud origin/feature/location-crud
+# Follow the same commit and push patterns as location app
+git commit -m "feat(department): add department CRUD operations"
+git push origin feature/department-crud
 ```
 
-### 2. Make your changes
-
-After making changes to the code, add your files:
+### Creating Category App Feature Branch
 
 ```bash
-# Add all changes
-git add .
+# Switch to the category feature branch
+git checkout feature/category-crud
 
-# Or add specific files
-git add <file_name>
+# If the branch doesn't exist, create it
+git checkout -b feature/category-crud origin/feature/category-crud
+
+# Follow the same commit and push patterns as location app
+git commit -m "feat(category): add category CRUD operations"
+git push origin feature/category-crud
 ```
 
-### 3. Commit with conventional commit rules
+### API Endpoints Structure
 
-This project follows conventional commits specification:
+The project follows a consistent pattern for API endpoints across different apps:
 
-```bash
-# Format: <type>(<scope>): <description>
+### API Endpoints for Department
 
-# Examples:
-git commit -m "feat(location): add location CRUD operations"
-git commit -m "fix(location): fix location validation error"
-git commit -m "docs(location): update location API documentation"
-git commit -m "refactor(location): refactor location serializer"
-git commit -m "test(location): add tests for location views"
-```
+**Department endpoints:**
+- `GET /department/` - List all departments
+- `POST /department/` - Create a new department
+- `GET /department/<id>/` - Get a specific department
+- `PUT /department/<id>/` - Update a specific department
+- `PATCH /department/<id>/` - Partially update a specific department
+- `DELETE /department/<id>/` - Delete a specific department
 
-Common commit types:
-- `feat`: New features
-- `fix`: Bug fixes
-- `docs`: Documentation changes
-- `style`: Code style changes (formatting, missing semicolons, etc.)
-- `refactor`: Code changes that neither fixes a bug nor adds a feature
-- `test`: Adding or correcting tests
-- `chore`: Other changes that don't modify src or test files
+**Category endpoints:**
+- `GET /category/` - List all categories
+- `POST /category/` - Create a new category
+- `GET /category/<id>/` - Get a specific category
+- `PUT /category/<id>/` - Update a specific category
+- `PATCH /category/<id>/` - Partially update a specific category
+- `DELETE /category/<id>/` - Delete a specific category
+- `GET /department/name/<name>/` - Get department by name
 
-### 4. Push your feature branch to origin
+### Implementation Details
 
-```bash
-# Push the feature branch to remote repository
-git push origin feature/location-crud
-
-# If this is the first push, you might need to set upstream
-git push --set-upstream origin feature/location-crud
-```
-
-### 5. Create a Pull Request
-
-After pushing your changes, create a pull request from your feature branch to the main branch through the GitHub interface.
-
----
-
-## API Documentation
-
-The API endpoints for location management are available at:
-- `GET /api/location/` - List all locations
-- `POST /api/location/` - Create a new location
-- `GET /api/location/<id>/` - Get a specific location
-- `PUT /api/location/<id>/` - Update a specific location
-- `PATCH /api/location/<id>/` - Partially update a specific location
-- `DELETE /api/location/<id>/` - Delete a specific location
-- `GET /api/location/name/<name>/` - Get location by name
+The department app follows the same structure as the location and person apps:
+- `serializers.py` - Handles data conversion between model and JSON
+- `views.py` - Processes HTTP requests for department management
+- `urls.py` - Defines URL patterns for the department endpoints
