@@ -29,13 +29,74 @@ class LocationDetailView(generics.RetrieveUpdateDestroyAPIView):
     """
     pass
 
+@api_view(['POST'])
+def location_create(request):
+    """
+    Docstring for location_create
+    Tạo mới vị trí lắp đặt
+    Endpoint: POST /location/create/
+    Mô tả: Tạo mới vị trí lắp đặt trong hệ thống
+    Input: Dữ liệu vị trí lắp đặt cần tạo (name, description)
+        Bode (raw JSON): {"name": "N21-NOC", "description": "Phòng trực nhà 21"}
+    Output:
+        {
+            "id": 1,
+            "name": "N21-NOC",
+            "description": "Phòng trực nhà 21"
+        }  
+    hoặc thông báo nếu địa điểm đã tồn tại
+
+    {
+        "name": [
+            "Địa điểm lắp đặt với tên 'N21-NOC' đã tồn tại."
+        ]
+    
+    }
+        
+    :param request: Description
+    """
+    # Deserialoze dữ liệu từ request boty và kiểm tra tính hợp lệ
+    
+    serializer = LocationSerializer(data=request.data)
+    # Nếu dữ liệu hợp lệ thì lưu vào database
+    if serializer.is_valid():
+        serializer.save()
+
+        # Trả về reponse với dữ liệu vừa tạo và status code 201 (CREATED)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    # Nếu dữ liệu không hợp lệ thì trả về lỗi với status code 404 (BAD_REQUEST)
+    return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)      
+
+
 
 @api_view(['GET'])
-def location_detail_by_name(request, name):
+def location_detail(request, pk):
     """
     API endpoint để lấy thông tin vị trí lắp đặt theo tên
-    GET: /location/name/{name}/
-    """
-    pass
+    GET: /location/{id}/
+    Mô tả: Trả về thông vị trí lắp đặt theo tên
+    Input: Không yêu cầu tham số
+    Output: Danh sách vị trí lắp đặt dưới dạng JSON
+    [
+        {
+            "id": 1,
+            "name": "N21-NOC",
+            "description": "Phòng trực nhà 21"
+        }   
+    ]
 
-###test123
+    """
+    # Lấy đối tượng location theo ID, nếu không tồn tại thì trả về lỗi 404
+    locations = get_object_or_404(Location, pk=pk)
+
+    # Serialize dữ liệu của phòng ban đó
+    serializer = LocationSerializer(locations)
+
+    # Trả về respone với dữ liệu serialized
+    return Response(serializer.data)
+
+
+
+    
+
+
