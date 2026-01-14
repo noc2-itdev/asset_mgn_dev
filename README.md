@@ -50,7 +50,7 @@ http://localhost:8000
 DATABASE_ENGINE=django.db.backends.postgresql_psycopg2
 DATABASE_NAME=asset_mgn
 DATABASE_USER=noc2_user
-DATABASE_PASSWORD=asset_mgn_password
+DATABASE_PASSWORD=admin
 DATABASE_HOST=X.X.X.X
 DATABASE_PORT=5432
 ```
