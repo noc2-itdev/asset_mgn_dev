@@ -30,14 +30,14 @@ class CategoryListView(generics.ListCreateAPIView):
     Endpoint: POST /categories/
     Mô tả: Tạo mới một danh mục trong hệ thống
     Input: Dữ liệu danh mục cần tạo (name, is_component)
-           Body (raw JSON): {"name": "Linh kiện máy tính", "is_component": True}
+           Body (raw JSON): {"name": "Linh kiện máy tính", "is_component": true}
 
 
     """
     # lấy toàn bộ danh sách danh mục tài sản GET, nếu chưa có thì tạo mới POST
     queryset = AssetCategory.objects.all()
     serializer_class = AssetCategorySerializer
-    permission_classes = [IsAuthenticated]
+    #permission_classes = [IsAuthenticated]
 
     
 
