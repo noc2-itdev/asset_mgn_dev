@@ -26,9 +26,12 @@ urlpatterns = [
     # Action cần triển khai:
     # - GET: Lấy thông tin chi tiết một danh mục tài sản
     # - PUT/PATCH: Cập nhật thông tin danh mục tài sản
-    # - DELETE: Xóa danh mục tài sản
+    
     path('<int:pk>/', views.CategoryDetailView.as_view(), name='category-detail'),
     
+    # - DELETE: Xóa danh mục tài sản
+    path('<int:pk>/delete/', views.category_delete, name='category_delete'),
+
     # TODO: Thêm đường dẫn cho chi tiết danh mục theo tên
     path('name/<str:name>/', views.category_detail_by_name, name='category-by-name'),
     
