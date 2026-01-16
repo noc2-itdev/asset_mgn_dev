@@ -27,10 +27,10 @@ urlpatterns = [
     # - GET: Lấy thông tin chi tiết một danh mục tài sản
     # - PUT/PATCH: Cập nhật thông tin danh mục tài sản
     # - DELETE: Xóa danh mục tài sản
-    # path('<int:pk>/', views.CategoryDetailView.as_view(), name='category-detail'),
+    path('<int:pk>/', views.CategoryDetailView.as_view(), name='category-detail'),
     
     # TODO: Thêm đường dẫn cho chi tiết danh mục theo tên
-    # Ví dụ: path('name/<str:name>/', views.category_detail_by_name, name='category-by-name'),
+    path('name/<str:name>/', views.category_detail_by_name, name='category-by-name'),
     
     # TODO: Thêm các endpoint khác như:
     # - Endpoint để lấy danh sách tài sản theo danh mục

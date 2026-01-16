@@ -77,7 +77,7 @@ class AssetCategorySerializer(serializers.ModelSerializer):
         # Trả lại giá trị để lưu vào trong database, giá trị mới hoặc giá trị cập nhật
         return value
 
-  """   def validate(self, data):
+    """   def validate(self, data):
         # xác thực danh mục là linh kiện hay tài sản chính. (máy tính, máy in, RAM, SSD,...).
         name = data.get('name', '').lower()
         is_component_input = data.get('is_component')
