@@ -13,6 +13,9 @@ from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from main.models import AssetCategory
 from .serializers import AssetCategorySerializer
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
 
 
 class CategoryListView(generics.ListCreateAPIView):
@@ -21,9 +24,22 @@ class CategoryListView(generics.ListCreateAPIView):
     Chưa triển khai đầy đủ - dành cho developer tiếp tục phát triển
     Action cần triển khai:
     - GET: Lấy danh sách tất cả danh mục tài sản
-    - POST: Tạo mới một danh mục tài sản
+    - POST: Tạo mới một danh mục tài sản 
+    Tạo mới một danh mục
+
+    Endpoint: POST /categories/
+    Mô tả: Tạo mới một danh mục trong hệ thống
+    Input: Dữ liệu danh mục cần tạo (name, is_component)
+           Body (raw JSON): {"name": "Linh kiện máy tính", "is_component": True}
+
+
     """
-    pass
+    # lấy toàn bộ danh sách danh mục tài sản GET, nếu chưa có thì tạo mới POST
+    queryset = AssetCategory.objects.all()
+    serializer_class = AssetCategorySerializer
+    permission_classes = [IsAuthenticated]
+
+    
 
 
 class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
@@ -36,3 +52,12 @@ class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
     - DELETE: Xóa danh mục tài sản
     """
     pass
+""" @api_view(['GET'])
+def assetcategory_list(request):
+
+    # lấy tất cả đối tượng AssetCategory
+    assetcategorys = AssetCategory.objects.all()
+    # chuyển dữ liệu sang JSON
+    serializer = AssetCategorySerializer(assetcategorys, many=True)
+    # Trả về respone với dữ liệu serializer
+    return Response(serializer.data) """

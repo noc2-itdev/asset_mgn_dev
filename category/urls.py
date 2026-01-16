@@ -20,7 +20,7 @@ urlpatterns = [
     # Action cần triển khai:
     # - GET: Lấy danh sách tất cả danh mục tài sản
     # - POST: Tạo mới một danh mục tài sản
-    # path('', views.CategoryListView.as_view(), name='category-list'),
+    path('categories/', views.CategoryListView.as_view(), name='category-list'),
     
     # Đường dẫn cho chi tiết, cập nhật, xóa danh mục theo ID
     # Action cần triển khai:
@@ -36,4 +36,5 @@ urlpatterns = [
     # - Endpoint để lấy danh sách tài sản theo danh mục
     # - Endpoint để kiểm tra sự tồn tại của danh mục
     # - Endpoint để tìm kiếm danh mục
+
 ]
