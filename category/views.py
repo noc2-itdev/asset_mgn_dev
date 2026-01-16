@@ -80,14 +80,14 @@ class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
     Ví dụ: curl -X DELETE http://localhost:8000/category/1/delete/
     """
 
-@api_view(['DELETE'])
+""" @api_view(['DELETE'])
 def category_delete(request, pk):
     # Lấy đối tượng danh mục tài sản theo ID, nếu không có thì trả về 404
     assetcategory = get_object_or_404(AssetCategory, pk=pk)
     #Xóa đối tưởng khỏi Database
     assetcategory.delete()
     # Trả về response rỗng với status code 204 (NO_CONTENT)
-    return Response(status=status.HTTP_204_NO_CONTENT)
+    return Response(status=status.HTTP_204_NO_CONTENT) """
 
 """
 API endpoint để lấy thông tin danh mục tài sản bằng tên
