@@ -9,9 +9,12 @@ from . import views
 app_name = 'location'
 
 urlpatterns = [
-    # Đường dẫn cho danh sách vị trí lắp đặt và tạo mới
+    # Danh sách và tạo mới: GET /location/ và POST /location/
+    path('', views.LocationListView.as_view(), name='location_list'),
     
-    # Đường dẫn cho chi tiết, cập nhật, xóa vị trí lắp đặt theo ID
+    # Chi tiết, sửa, xóa theo ID: /location/1/
+    path('<int:pk>/', views.LocationDetailView.as_view(), name='location_detail'),
     
-    # Đường dẫn cho chi tiết vị trí lắp đặt theo tên
+    # Chi tiết theo tên: /location/name/Kho-A/
+    path('name/<str:name>/', views.location_detail_by_name, name='location_detail_by_name'),
 ]

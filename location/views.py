@@ -17,7 +17,8 @@ class LocationListView(generics.ListCreateAPIView):
     GET: Lấy danh sách tất cả vị trí lắp đặt
     POST: Tạo mới một vị trí lắp đặt
     """
-    pass
+    queryset = Location.objects.all()
+    serializer_class = LocationSerializer
 
 
 class LocationDetailView(generics.RetrieveUpdateDestroyAPIView):
@@ -26,8 +27,12 @@ class LocationDetailView(generics.RetrieveUpdateDestroyAPIView):
     GET: Lấy thông tin chi tiết một vị trí lắp đặt
     PUT/PATCH: Cập nhật thông tin vị trí lắp đặt
     DELETE: Xóa vị trí lắp đặt
+    GET: Chi tiết vị trí theo ID
+    PUT/PATCH: Cập nhật vị trí
+    DELETE: Xóa vị trí
     """
-    pass
+    queryset = Location.objects.all()
+    serializer_class = LocationSerializer
 
 
 @api_view(['GET'])
@@ -36,4 +41,7 @@ def location_detail_by_name(request, name):
     API endpoint để lấy thông tin vị trí lắp đặt theo tên
     GET: /location/name/{name}/
     """
-    pass
+    # Tìm kiếm vị trí theo tên (không phân biệt chữ hoa chữ thường với __iexact)
+    location = get_object_or_404(Location, name__iexact=name)
+    serializer = LocationSerializer(location)
+    return Response(serializer.data)
