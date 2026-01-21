@@ -23,6 +23,7 @@ urlpatterns = [
     path('api/', include('main.urls')),
     path('category/', include('category.urls')),
     path('department/', include('department.urls')),
+    path('person/', include('person.urls')),
     path('api-token-auth/', obtain_auth_token, name='api_token_auth')
 
 ]
